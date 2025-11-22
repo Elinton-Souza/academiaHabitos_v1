@@ -1,9 +1,77 @@
 {
   "usuarios": [
+    {
+      "id": "ebac",
+      "nome": "Elinton Souza Cunha",
+      "email": "elintonsouzacunha@gmail.com",
+      "senha": "1234567",
+      "tipo": "pai",
+      "dataCriacao": "2025-11-22T17:16:03.522Z"
+    }
   ],
   "criancas": [
+    {
+      "id": "0f38",
+      "nome": "Maria Paula",
+      "idade": 10,
+      "token": "5730",
+      "responsavelId": "ebac",
+      "pontos": 0,
+      "tarefasCompletas": 0,
+      "dataCadastro": "2025-11-22T17:28:25.163Z",
+      "avatar": "👧"
+    },
+    {
+      "id": "0fc5",
+      "nome": "Brizo",
+      "idade": 11,
+      "token": "2302",
+      "responsavelId": "ebac",
+      "pontos": 0,
+      "tarefasCompletas": 0,
+      "dataCadastro": "2025-11-22T17:43:10.527Z",
+      "avatar": "👦"
+    },
+    {
+      "id": "39c6",
+      "nome": "Bruno",
+      "idade": 3,
+      "token": "5072",
+      "responsavelId": "ebac",
+      "pontos": 0,
+      "tarefasCompletas": 0,
+      "dataCadastro": "2025-11-22T17:53:22.347Z",
+      "avatar": "👶"
+    }
   ],
   "trilhas": [
+    {
+      "id": "bb02",
+      "titulo": "Rotina Matinal",
+      "descricao": "Arrume a cama",
+      "criancaId": 0,
+      "icone": "🛏",
+      "tarefas": [
+        {
+          "id": 1763839951383,
+          "titulo": "cama",
+          "descricao": "arrumar a cama",
+          "pontos": 10,
+          "icone": "🛏",
+          "repetir": "diaria"
+        },
+        {
+          "id": 1763839979145,
+          "titulo": "Torcer",
+          "descricao": "Torça muito pro LOBÃO",
+          "pontos": 30,
+          "icone": "🔵🟡",
+          "repetir": "diaria"
+        }
+      ],
+      "dataCriacao": "2025-11-22T19:33:04.427Z",
+      "ativa": true
+    }
   ],
   "recompensas": [],
   "resgates": []

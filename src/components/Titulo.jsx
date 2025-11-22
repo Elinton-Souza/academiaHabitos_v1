@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import './Titulo.css'
+import { Link } from "react-router-dom";
+import "./Titulo.css";
 
 export default function Titulo({ usuario, onLogout }) {
   return (
@@ -13,23 +13,35 @@ export default function Titulo({ usuario, onLogout }) {
               <span>Transformando rotinas em aventuras</span>
             </div>
           </div>
-          
+
           <nav className="main-nav">
-            <Link to="/" className='nav-link'>Home</Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
             {!usuario ? (
               <>
-                <Link to="/login" className='nav-link'>Login</Link>
-                <Link to="/registro" className='nav-link secondary'>Cadastrar</Link>
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+                <Link to="/registro" className="nav-link">
+                  Cadastrar
+                </Link>
               </>
             ) : (
               <>
-                <Link to="/selecao-perfil" className='nav-link'>Meu App</Link>
+                <Link to="/selecao-perfil" className="nav-link">
+                  Meu App
+                </Link>
                 <div className="user-menu">
                   <span className="user-greeting">Olá, {usuario.nome}</span>
                   <div className="user-avatar">
-                    {usuario.avatar || (usuario.tipo === 'pai' ? '👨' : '👦')}
+                    {usuario.avatar || (usuario.tipo === "pai" ? "👨" : "👦")}
                   </div>
-                  <button onClick={onLogout} className="logout-btn" title="Sair">
+                  <button
+                    onClick={onLogout}
+                    className="logout-btn"
+                    title="Sair"
+                  >
                     🚪
                   </button>
                 </div>
@@ -39,5 +51,5 @@ export default function Titulo({ usuario, onLogout }) {
         </div>
       </header>
     </>
-  )
+  );
 }

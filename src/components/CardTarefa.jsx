@@ -1,13 +1,31 @@
 import './CardTarefa.css'
 
 function CardTarefa({ tarefa, criancaId, onTarefaCompleta }) {
+  console.log('CardTarefa renderizado:', tarefa)
+
   async function marcarComoCompleta() {
     if (tarefa.completada) return
 
     try {
-      // Atualizar tarefa como completa
-      const tarefaAtualizada = { ...tarefa, completada: true }
+      // Primeiro, buscar a trilha completa para atualizar a tarefa específica
+      const respostaTrilha = await fetch(`http://localhost:3001/trilhas/${tarefa.trilhaId}`)
+      const trilha = await respostaTrilha.json()
       
+      // Encontrar e atualizar a tarefa específica
+      const tarefasAtualizadas = trilha.tarefas.map(t => 
+        t.id === tarefa.id ? { ...t, completada: true, dataCompleta: new Date().toISOString() } : t
+      )
+      
+      // Atualizar a trilha com a tarefa marcada como completa
+      await fetch(`http://localhost:3001/trilhas/${tarefa.trilhaId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...trilha,
+          tarefas: tarefasAtualizadas
+        })
+      })
+
       // Atualizar pontos da criança
       const respostaCrianca = await fetch(`http://localhost:3001/criancas/${criancaId}`)
       const crianca = await respostaCrianca.json()
@@ -23,6 +41,9 @@ function CardTarefa({ tarefa, criancaId, onTarefaCompleta }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(criancaAtualizada)
       })
+
+      // Atualizar localStorage com dados atualizados da criança
+      localStorage.setItem('criancaLogada', JSON.stringify(criancaAtualizada))
 
       alert(`🎉 Parabéns! Você ganhou ${tarefa.pontos} pontos!`)
       onTarefaCompleta()
@@ -43,6 +64,12 @@ function CardTarefa({ tarefa, criancaId, onTarefaCompleta }) {
       <div className="tarefa-content">
         <h3>{tarefa.titulo}</h3>
         <p>{tarefa.descricao}</p>
+        
+        {tarefa.completada && tarefa.dataCompleta && (
+          <div className="tarefa-info-completa">
+            <small>Concluída em: {new Date(tarefa.dataCompleta).toLocaleDateString('pt-BR')}</small>
+          </div>
+        )}
       </div>
       
       <div className="tarefa-actions">

@@ -1,34 +1,38 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import Titulo from './components/Titulo'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Titulo from "./components/Titulo";
 
 function App() {
-  const [usuarioLogado, setUsuarioLogado] = useState(null)
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
 
   useEffect(() => {
-    // Verificar se há usuário logado no localStorage
-    const usuarioSalvo = localStorage.getItem('usuarioLogado')
-    const criancaSalva = localStorage.getItem('criancaLogada')
-    
+    //Lógica Persistente
+    //verifica se tem usuario logado no localStorage
+    //RECURSO E: Mantém login. Caso usuário saia do app, ao voltar, continua logado.
+    //RECURSO C: Garante que os pontos e recompensas não sejam perdidos ao fechar o app.
+    //Recurso B: A lista de missões é persistente porque ela é recuperada do JSON Server (BD simulado)
+    const usuarioSalvo = localStorage.getItem("usuarioLogado");
+    const criancaSalva = localStorage.getItem("criancaLogada");
+
     if (usuarioSalvo) {
-      setUsuarioLogado(JSON.parse(usuarioSalvo))
+      setUsuarioLogado(JSON.parse(usuarioSalvo));
     } else if (criancaSalva) {
-      setUsuarioLogado(JSON.parse(criancaSalva))
+      setUsuarioLogado(JSON.parse(criancaSalva));
     }
-  }, [])
+  }, []);
 
   function handleLogout() {
-    localStorage.removeItem('usuarioLogado')
-    localStorage.removeItem('criancaLogada')
-    setUsuarioLogado(null)
-    window.location.href = '/'
+    localStorage.removeItem("usuarioLogado");
+    localStorage.removeItem("criancaLogada");
+    setUsuarioLogado(null);
+    window.location.href = "/";
   }
 
   function handleContinuarApp() {
     if (usuarioLogado) {
-      window.location.href = '/selecao-perfil'
+      window.location.href = "/selecao-perfil";
     } else {
-      window.location.href = '/login'
+      window.location.href = "/login";
     }
   }
 
@@ -39,26 +43,44 @@ function App() {
         <div className="hero-section">
           <div className="hero-content">
             <h1>Transforme Rotinas em Aventuras! 🎯</h1>
-            <p>A plataforma que torna as tarefas diárias das crianças em missões divertidas e recompensadoras</p>
-            
+            <p>
+              A plataforma que torna as tarefas diárias das crianças em missões
+              divertidas e recompensadoras
+            </p>
+
             {usuarioLogado ? (
               <div className="welcome-user">
-                <p>Que bom te ver de novo, <strong>{usuarioLogado.nome}</strong>! 🎉</p>
+                <p>
+                  Que bom te ver de novo, <strong>{usuarioLogado.nome}</strong>!
+                  🎉
+                </p>
                 <div className="user-actions">
-                  <button onClick={handleContinuarApp} className="btn-primary large">
+                  <button
+                    onClick={handleContinuarApp}
+                    className="btn-primary large"
+                  >
                     Continuar para o App 🚀
                   </button>
-                  <button onClick={handleLogout} className="btn-secondary large">
+                  <button
+                    onClick={handleLogout}
+                    className="btn-secondary large"
+                  >
                     Sair da Conta
                   </button>
                 </div>
               </div>
             ) : (
               <div className="cta-buttons">
-                <button onClick={() => window.location.href = '/login'} className="btn-primary large">
+                <button
+                  onClick={() => (window.location.href = "/login")}
+                  className="btn-primary large"
+                >
                   Fazer Login
                 </button>
-                <button onClick={() => window.location.href = '/registro'} className="btn-secondary large">
+                <button
+                  onClick={() => (window.location.href = "/registro")}
+                  className="btn-secondary large"
+                >
                   Criar Conta
                 </button>
               </div>
@@ -70,12 +92,15 @@ function App() {
             <div className="floating-card rewards">🏆 Recompensas</div>
           </div>
         </div>
-        
+
         <div className="features-grid">
           <div className="feature-card">
             <div className="feature-icon">👶</div>
             <h3>Para Crianças</h3>
-            <p>Interface colorida e divertida onde cada tarefa vira uma missão emocionante</p>
+            <p>
+              Interface colorida e divertida onde cada tarefa vira uma missão
+              emocionante
+            </p>
             <ul>
               <li>🎮 Sistema de pontos gamificado</li>
               <li>🏆 Conquistas e recompensas</li>
@@ -86,7 +111,9 @@ function App() {
           <div className="feature-card">
             <div className="feature-icon">👨‍👩‍👧‍👦</div>
             <h3>Para Pais</h3>
-            <p>Controle total sobre as atividades e acompanhamento do progresso</p>
+            <p>
+              Controle total sobre as atividades e acompanhamento do progresso
+            </p>
             <ul>
               <li>📊 Dashboard de progresso</li>
               <li>🎯 Criação de tarefas personalizadas</li>
@@ -123,7 +150,10 @@ function App() {
                 <li>❌ Recompensas personalizadas</li>
                 <li>❌ Relatórios detalhados</li>
               </ul>
-              <button className="plan-btn" onClick={() => window.location.href = '/registro'}>
+              <button
+                className="plan-btn"
+                onClick={() => (window.location.href = "/registro")}
+              >
                 Começar Grátis
               </button>
             </div>
@@ -143,7 +173,10 @@ function App() {
                 <li>✅ Relatórios detalhados</li>
                 <li>✅ Suporte prioritário</li>
               </ul>
-              <button className="plan-btn primary" onClick={() => window.location.href = '/registro'}>
+              <button
+                className="plan-btn primary"
+                onClick={() => (window.location.href = "/registro")}
+              >
                 Assinar Premium
               </button>
             </div>
@@ -162,7 +195,10 @@ function App() {
                 <li>✅ Eventos e desafios especiais</li>
                 <li>✅ Consultoria personalizada</li>
               </ul>
-              <button className="plan-btn" onClick={() => window.location.href = '/registro'}>
+              <button
+                className="plan-btn"
+                onClick={() => (window.location.href = "/registro")}
+              >
                 Escolher Família
               </button>
             </div>
@@ -172,22 +208,28 @@ function App() {
         {!usuarioLogado && (
           <div className="final-cta">
             <h2>Pronto para Transformar a Rotina da Sua Família? 🚀</h2>
-            <p>Junte-se a mais de 10.000 famílias que já descobriram o segredo para tornar as tarefas divertidas</p>
+            <p>
+              Junte-se a mais de 10.000 famílias que já descobriram o segredo
+              para tornar as tarefas divertidas
+            </p>
             <div className="cta-buttons">
-              <button onClick={() => window.location.href = '/registro'} className="btn-primary large">
+              <button
+                onClick={() => (window.location.href = "/registro")}
+                className="btn-primary large"
+              >
                 Começar Agora - É Grátis!
               </button>
             </div>
             <div className="trust-badges">
-              <span>⭐ 4.9/5 - Avaliado por 2.000+ famílias</span>
-              <span>👨‍👩‍👧‍👦 10.000+ famílias felizes</span>
-              <span>🔒 100% seguro e privado</span>
+              <span>⭐ 4.9/5 - Avaliado por 23+ famílias</span>
+              <span>👨‍👩‍👧‍👦 11+ famílias felizes</span>
+              <span>🔒 97% seguro e privado</span>
             </div>
           </div>
         )}
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

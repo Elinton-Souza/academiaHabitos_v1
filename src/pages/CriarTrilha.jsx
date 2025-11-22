@@ -1,25 +1,27 @@
-import { useForm } from 'react-hook-form'
-import { useState } from 'react'
-import Titulo from '../components/Titulo'
-import './Pages.css'
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import Titulo from "../components/Titulo";
+import "./Pages.css";
 
 function CriarTrilha() {
-  const { register, handleSubmit, reset } = useForm()
-  const [criancas, setCriancas] = useState([])
-  const [tarefas, setTarefas] = useState([])
+  const { register, handleSubmit, reset } = useForm();
+  const [criancas, setCriancas] = useState([]);
+  const [tarefas, setTarefas] = useState([]);
 
   useState(() => {
-    carregarCriancas()
-  }, [])
+    carregarCriancas();
+  }, []);
 
   async function carregarCriancas() {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     try {
-      const resposta = await fetch(`http://localhost:3001/criancas?responsavelId=${usuarioLogado.id}`)
-      const criancasData = await resposta.json()
-      setCriancas(criancasData)
+      const resposta = await fetch(
+        `http://localhost:3001/criancas?responsavelId=${usuarioLogado.id}`
+      );
+      const criancasData = await resposta.json();
+      setCriancas(criancasData);
     } catch (error) {
-      console.error('Erro ao carregar crianças:', error)
+      console.error("Erro ao carregar crianças:", error);
     }
   }
 
@@ -30,21 +32,21 @@ function CriarTrilha() {
       descricao: data.descricaoTarefa,
       pontos: parseInt(data.pontosTarefa),
       icone: data.iconeTarefa,
-      repetir: data.repetirTarefa || 'diaria'
-    }
-    setTarefas([...tarefas, novaTarefa])
+      repetir: data.repetirTarefa || "diaria",
+    };
+    setTarefas([...tarefas, novaTarefa]);
     reset({
-      tituloTarefa: '',
-      descricaoTarefa: '',
+      tituloTarefa: "",
+      descricaoTarefa: "",
       pontosTarefa: 10,
-      iconeTarefa: '✅'
-    })
+      iconeTarefa: "✅",
+    });
   }
 
   async function salvarTrilha(data) {
     if (tarefas.length === 0) {
-      alert('Adicione pelo menos uma tarefa à trilha!')
-      return
+      alert("Adicione pelo menos uma tarefa à trilha!");
+      return;
     }
 
     const novaTrilha = {
@@ -54,29 +56,29 @@ function CriarTrilha() {
       icone: data.iconeTrilha,
       tarefas: tarefas,
       dataCriacao: new Date().toISOString(),
-      ativa: true
-    }
+      ativa: true,
+    };
 
     try {
-      const resposta = await fetch('http://localhost:3001/trilhas', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(novaTrilha)
-      })
+      const resposta = await fetch("http://localhost:3001/trilhas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novaTrilha),
+      });
 
       if (resposta.ok) {
-        alert('🎉 Trilha criada com sucesso!')
-        setTarefas([])
-        reset()
+        alert("🎉 Trilha criada com sucesso!");
+        setTarefas([]);
+        reset();
       }
     } catch (error) {
-      console.error('Erro ao criar trilha:', error)
-      alert('Erro ao criar trilha')
+      console.error("Erro ao criar trilha:", error);
+      alert("Erro ao criar trilha");
     }
   }
 
   function removerTarefa(tarefaId) {
-    setTarefas(tarefas.filter(t => t.id !== tarefaId))
+    setTarefas(tarefas.filter((t) => t.id !== tarefaId));
   }
 
   return (
@@ -93,31 +95,33 @@ function CriarTrilha() {
             <div className="form-row">
               <div className="form-group">
                 <label>Título da Trilha:</label>
-                <input 
-                  type="text" 
-                  required 
-                  {...register('tituloTrilha')}
+                <input
+                  type="text"
+                  required
+                  {...register("tituloTrilha")}
                   placeholder="Ex: Rotina Matinal"
                 />
               </div>
-              
+
               <div className="form-group">
                 <label>Ícone:</label>
-                <select {...register('iconeTrilha')} defaultValue="🎯">
-                  <option value="🎯">Alvo</option>
-                  <option value="⭐">Estrela</option>
-                  <option value="🏆">Troféu</option>
-                  <option value="🚀">Foguete</option>
-                  <option value="🌈">Arco-íris</option>
-                  <option value="🐉">Dragão</option>
+                <select {...register("iconeTrilha")} defaultValue="🎯">
+                  <option value="🛏">Arrumar a cama</option>
+                  <option value="🪥">Escovar os dentes</option>
+                  <option value="🚰">Beber água</option>
+                  <option value="📒">Estudar</option>
+                  <option value="🛝">Brincar</option>
+                  <option value="🥗">Comer salada</option>
+                  <option value="🔵🟡">Agradecer por ser Lobão</option>
+                  <option value="⚫⚪🔵">Agradecer por ser Grêmio</option>
                 </select>
               </div>
             </div>
 
             <div className="form-group">
               <label>Descrição:</label>
-              <textarea 
-                {...register('descricaoTrilha')}
+              <textarea
+                {...register("descricaoTrilha")}
                 placeholder="Descreva o objetivo desta trilha..."
                 rows="3"
               />
@@ -125,9 +129,9 @@ function CriarTrilha() {
 
             <div className="form-group">
               <label>Para qual criança?</label>
-              <select {...register('criancaId')} required>
+              <select {...register("criancaId")} required>
                 <option value="">Selecione uma criança</option>
-                {criancas.map(crianca => (
+                {criancas.map((crianca) => (
                   <option key={crianca.id} value={crianca.id}>
                     {crianca.avatar} {crianca.nome} ({crianca.idade} anos)
                   </option>
@@ -137,48 +141,50 @@ function CriarTrilha() {
 
             <div className="tarefas-section">
               <h3>📝 Adicionar Tarefas</h3>
-              
+
               <div className="tarefa-form">
                 <div className="form-row">
                   <div className="form-group">
-                    <input 
-                      type="text" 
-                      {...register('tituloTarefa')}
+                    <input
+                      type="text"
+                      {...register("tituloTarefa")}
                       placeholder="Título da tarefa"
                     />
                   </div>
                   <div className="form-group">
-                    <input 
-                      type="number" 
-                      {...register('pontosTarefa')}
+                    <input
+                      type="number"
+                      {...register("pontosTarefa")}
                       placeholder="Pontos"
                       defaultValue="10"
                     />
                   </div>
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
-                    <textarea 
-                      {...register('descricaoTarefa')}
+                    <textarea
+                      {...register("descricaoTarefa")}
                       placeholder="Descrição da tarefa"
                       rows="2"
                     />
                   </div>
                   <div className="form-group">
-                    <select {...register('iconeTarefa')} defaultValue="✅">
-                      <option value="✅">Check</option>
-                      <option value="🛏️">Cama</option>
-                      <option value="🦷">Dente</option>
-                      <option value="🍽️">Comida</option>
-                      <option value="📚">Livro</option>
-                      <option value="🎮">Video-game</option>
+                    <select {...register("iconeTarefa")} defaultValue="✅">
+                      <option value="🛏">Arrumar a cama</option>
+                      <option value="🪥">Escovar os dentes</option>
+                      <option value="🚰">Beber água</option>
+                      <option value="📒">Estudar</option>
+                      <option value="🛝">Brincar</option>
+                      <option value="🥗">Comer salada</option>
+                      <option value="🔵🟡">Agradecer por ser Lobão</option>
+                      <option value="⚫⚪🔵">Agradecer por ser Grêmio</option>
                     </select>
                   </div>
                 </div>
-                
-                <button 
-                  type="button" 
+
+                <button
+                  type="button"
                   onClick={handleSubmit(adicionarTarefa)}
                   className="btn-secondary"
                 >
@@ -189,7 +195,7 @@ function CriarTrilha() {
               {tarefas.length > 0 && (
                 <div className="tarefas-list">
                   <h4>Tarefas Adicionadas ({tarefas.length})</h4>
-                  {tarefas.map(tarefa => (
+                  {tarefas.map((tarefa) => (
                     <div key={tarefa.id} className="tarefa-item">
                       <span className="tarefa-icone">{tarefa.icone}</span>
                       <div className="tarefa-info">
@@ -197,8 +203,8 @@ function CriarTrilha() {
                         <span>{tarefa.descricao}</span>
                         <small>{tarefa.pontos} pontos</small>
                       </div>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => removerTarefa(tarefa.id)}
                         className="btn-remove"
                       >
@@ -210,14 +216,18 @@ function CriarTrilha() {
               )}
             </div>
 
-            <button type="submit" className="btn-submit" disabled={tarefas.length === 0}>
+            <button
+              type="submit"
+              className="btn-submit"
+              disabled={tarefas.length === 0}
+            >
               🚀 Criar Trilha
             </button>
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default CriarTrilha
+export default CriarTrilha;

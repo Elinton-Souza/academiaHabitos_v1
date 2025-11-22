@@ -32,8 +32,8 @@ function AreaPais() {
       <Titulo />
       <div className="page-container">
         <div className="page-header">
-          <h1>👨‍👩‍👧‍👦 Área dos Responsáveis</h1>
-          <p>Gerencie as rotinas e acompanhe o progresso dos seus filhos</p>
+          <h1>👨‍👩‍👧‍👦 Área dos Papais</h1>
+          <p>Gerencie os hábitos e acompanhe o progresso dos seus filhos</p>
         </div>
 
         <div className="dashboard-grid">
@@ -57,7 +57,7 @@ function AreaPais() {
           <div className="dashboard-card secondary">
             <div className="card-icon">🎯</div>
             <h3>Criar Trilhas</h3>
-            <p>Crie rotinas e tarefas personalizadas</p>
+            <p>Crie hábitos, rotinas e tarefas personalizadas</p>
             <Link to="/criar-trilha" className="card-button">
               Nova Trilha
             </Link>
