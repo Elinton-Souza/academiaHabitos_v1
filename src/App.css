@@ -12,7 +12,6 @@
   padding: 2rem;
 }
 
-/* Hero Section */
 .hero-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -97,7 +96,7 @@
 
 @keyframes float-card {
   0%,
-  % {
+  100% {
     transform: translateY(0) rotate(0deg);
   }
 
@@ -106,7 +105,6 @@
   }
 }
 
-/* Buttons */
 .cta-buttons,
 .user-actions {
   display: flex;
@@ -159,7 +157,6 @@
   font-size: 1.2rem;
 }
 
-/* Welcome User */
 .welcome-user {
   background: rgba(255, 255, 255, 0.15);
   padding: 2rem;
@@ -174,7 +171,6 @@
   text-align: center;
 }
 
-/* Features Grid */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -239,7 +235,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Plans Section */
 .plans-section {
   margin: 6rem 0;
   text-align: center;
@@ -362,7 +357,6 @@
   background: #5a6fd8;
 }
 
-/* Final CTA */
 .final-cta {
   text-align: center;
   padding: 4rem 2rem;
@@ -400,7 +394,6 @@
   font-weight: 500;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .landing-container {
     padding: 1rem;

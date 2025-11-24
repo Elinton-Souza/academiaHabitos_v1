@@ -21,11 +21,9 @@ function LojaRecompensas() {
   async function carregarRecompensas(criancaId) {
     try {
       setCarregando(true)
-      // Buscar recompensas para esta criança específica e recompensas gerais
       const resposta = await fetch(`http://localhost:3001/recompensas?ativa=true`)
       const todasRecompensas = await resposta.json()
       
-      // Filtrar recompensas: da criança específica OU gerais (sem criancaId)
       const recompensasFiltradas = todasRecompensas.filter(
         r => !r.criancaId || r.criancaId === criancaId
       )
@@ -51,7 +49,6 @@ function LojaRecompensas() {
     }
 
     try {
-      // Criar registro de resgate
       const resgate = {
         criancaId: crianca.id,
         recompensaId: recompensa.id,
@@ -66,7 +63,6 @@ function LojaRecompensas() {
         body: JSON.stringify(resgate)
       })
 
-      // Atualizar pontos da criança
       const criancaAtualizada = {
         ...crianca,
         pontos: crianca.pontos - recompensa.pontos
@@ -78,7 +74,6 @@ function LojaRecompensas() {
         body: JSON.stringify(criancaAtualizada)
       })
 
-      // Atualizar localStorage
       setCrianca(criancaAtualizada)
       localStorage.setItem('criancaLogada', JSON.stringify(criancaAtualizada))
 

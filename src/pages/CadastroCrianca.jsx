@@ -85,7 +85,6 @@ function CadastroCrianca() {
             <div className="form-group">
               <label>Avatar:</label>
               <select {...register("avatar")} defaultValue="👶">
-                <option value="👶">Bebê</option>
                 <option value="👦">Menino</option>
                 <option value="👧">Menina</option>
               </select>

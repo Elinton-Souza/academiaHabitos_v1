@@ -1,4 +1,3 @@
-/* Pages.css - Estilos para todas as páginas */
 .page-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -34,7 +33,6 @@
   opacity: 0.9;
 }
 
-/* Dashboard Grid */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -90,7 +88,6 @@
   color: white;
 }
 
-/* Stats Container */
 .stats-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -121,7 +118,6 @@
   letter-spacing: 1px;
 }
 
-/* Kids Theme */
 .kids-theme {
   background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
   min-height: 100vh;
@@ -157,7 +153,6 @@
   color: #333;
 }
 
-/* Forms */
 .form-container {
   max-width: 800px;
   margin: 0 auto;
@@ -237,7 +232,6 @@
   background: #5a6268;
 }
 
-/* Children List */
 .criancas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -303,7 +297,6 @@
   font-size: 0.8rem;
 }
 
-/* Tarefas */
 .tarefas-section {
   margin: 2rem 0;
   padding: 1.5rem;
@@ -365,7 +358,6 @@
   padding: 0.5rem;
 }
 
-/* Trilhas */
 .trilhas-container {
   display: flex;
   flex-direction: column;
@@ -407,7 +399,6 @@
   gap: 1rem;
 }
 
-/* Progresso */
 .progresso-bar {
   width: 100%;
   height: 8px;
@@ -460,7 +451,6 @@
   font-weight: 600;
 }
 
-/* Empty States */
 .empty-state {
   text-align: center;
   padding: 3rem;
@@ -478,7 +468,6 @@
   color: #dc3545;
 }
 
-/* Kids Motivation */
 .kids-motivation {
   text-align: center;
   margin-top: 2rem;
@@ -489,7 +478,6 @@
   font-weight: 600;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .page-container {
     padding: 1rem;

@@ -1,92 +1,92 @@
 .card-tarefa {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .card-tarefa:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-tarefa.completa {
-    border-color: #28a745;
-    background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+  border-color: #28a745;
+  background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
 }
 
 .card-tarefa.completa::before {
-    content: '✅ CONCLUÍDA';
-    position: absolute;
-    top: 10px;
-    right: -30px;
-    background: #28a745;
-    color: white;
-    padding: 5px 30px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    transform: rotate(45deg);
+  content: "✅ CONCLUÍDA";
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #28a745;
+  color: white;
+  padding: 5px 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  transform: rotate(45deg);
 }
 
 .tarefa-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .tarefa-icone {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .tarefa-pontos {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .tarefa-content h3 {
-    margin: 0 0 0.5rem 0;
-    color: #333;
-    font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.2rem;
 }
 
 .tarefa-content p {
-    margin: 0;
-    color: #666;
-    line-height: 1.4;
+  margin: 0;
+  color: #666;
+  line-height: 1.4;
 }
 
 .tarefa-actions {
-    margin-top: 1rem;
-    text-align: center;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .btn-completar {
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 100%;
 }
 
 .btn-completar:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .tarefa-concluida {
-    color: #28a745;
-    font-weight: 600;
-    font-size: 1.1rem;
+  color: #28a745;
+  font-weight: 600;
+  font-size: 1.1rem;
 }

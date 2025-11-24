@@ -152,7 +152,6 @@ header {
   transform: scale(1.1);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .header-container {
     padding: 1rem;

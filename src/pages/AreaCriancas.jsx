@@ -9,17 +9,17 @@ function AreaCriancas() {
   const [crianca, setCrianca] = useState(null);
   const [carregando, setCarregando] = useState(true);
 
-  console.log("AreaCriancas carregando..."); // Debug
+  console.log("AreaCriancas carregando...");
 
   useEffect(() => {
-    console.log("useEffect executado"); // Debug
+    console.log("useEffect executado"); 
     const criancaLogada = localStorage.getItem("criancaLogada");
-    console.log("criancaLogada:", criancaLogada); // Debug
+    console.log("criancaLogada:", criancaLogada); 
 
     if (criancaLogada) {
       try {
         const criancaData = JSON.parse(criancaLogada);
-        console.log("Dados da criança:", criancaData); // Debug
+        console.log("Dados da criança:", criancaData); 
         setCrianca(criancaData);
         carregarTrilhas(criancaData.id);
       } catch (error) {
@@ -33,22 +33,21 @@ function AreaCriancas() {
   }, []);
 
   async function carregarTrilhas(criancaId) {
-    console.log("Carregando trilhas para criança:", criancaId); // Debug
+    console.log("Carregando trilhas para criança:", criancaId); 
     try {
       setCarregando(true);
       const resposta = await fetch(
         `http://localhost:3001/trilhas?criancaId=${criancaId}`
       );
-      console.log("Resposta da API:", resposta); // Debug
+      console.log("Resposta da API:", resposta); 
 
       if (!resposta.ok) {
         throw new Error("Erro na resposta da API");
       }
 
       const trilhasData = await resposta.json();
-      console.log("Trilhas carregadas:", trilhasData); // Debug
+      console.log("Trilhas carregadas:", trilhasData); 
 
-      // Adicionar trilhaId em cada tarefa para referência
       const trilhasComIds = trilhasData.map((trilha) => ({
         ...trilha,
         tarefas:
@@ -60,7 +59,6 @@ function AreaCriancas() {
 
       setTrilhas(trilhasComIds);
 
-      // Atualizar dados da criança do localStorage
       const respostaCrianca = await fetch(
         `http://localhost:3001/criancas/${criancaId}`
       );
@@ -93,7 +91,6 @@ function AreaCriancas() {
     }, 0);
   }
 
-  // Debug: Mostrar estado atual
   console.log("Estado atual:", { crianca, trilhas, carregando });
 
   if (!crianca && !carregando) {
